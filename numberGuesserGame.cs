@@ -1,27 +1,27 @@
 ﻿using System;
 
-
 namespace NumberGuesser
 {
-
     class Program
     {
+        const string appName = "Number Guesser";
+        const string appVersion = "1.0.0";
+        const string appAuthor = "faraj#1337";
+        static Random random = new Random();
+        
         // choose a point method
         static void Main(string[] args)
         {
-            GetAppInfo();
+            SetTitle();
             // username question 
             Console.WriteLine("What is your name?");
             // user input name
             string inputName = Console.ReadLine();
 
-            Console.WriteLine("Hello {0}, let's play a game...", inputName);
+            Console.WriteLine($"Hello {inputName}, let's play a game...");
 
             while (true)
             {
-
-                Random random = new Random();
-
                 int correctNumber = random.Next(1, 10);
 
                 int guess = 0;
@@ -31,7 +31,6 @@ namespace NumberGuesser
                 // not correct
                 while (guess != correctNumber)
                 {
-
                     // get user input
                     string input = Console.ReadLine();
 
@@ -48,7 +47,7 @@ namespace NumberGuesser
 
 
                     // cast to int and put in guess
-                    guess = Int32.Parse(input);
+                    guess = int.Parse(input);
                     if (guess != correctNumber)
                     {
                         Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -70,30 +69,13 @@ namespace NumberGuesser
                 Console.WriteLine("Play Again? [Y or N]");
                 string answer = Console.ReadLine().ToUpper();
 
-                if (answer == "Y")
-                {
-                    continue;
-                }
-                else if (answer == "N")
-                {
-                    return;
-                }
-                else
-                {
-                    return;
-                }
-
-
+                if (answer != "Y") return;
                 Console.ReadKey();
             }
-
         }
 
-        static void GetAppInfo()
+        static void SetTitle()
         {
-            string appName = "Number Guesser";
-            string appVersion = "1.0.0";
-            string appAuthor = "faraj#1337";
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             // app info thing bruhh
             Console.WriteLine("{0}: Version {1} by {2}", appName, appVersion, appAuthor);
